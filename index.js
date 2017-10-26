@@ -27,9 +27,13 @@
 					classes.push(inner);
 				}
 			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
+				if (hasOwn.call(arg, 'toString') && typeof arg.toString === 'function') {
+					classes.push(arg.toString());
+				} else {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
 					}
 				}
 			}
